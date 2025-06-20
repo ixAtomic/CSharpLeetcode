@@ -31,7 +31,7 @@ class MinimumWindowSubstring
 
             if(characterList.ContainsKey(c) && currentValues[c] == characterList[c])
             {
-                theSubstring.ins
+                //theSubstring.ins
             }
 
             while(i < j && theSubstring.Length == characterList.Count())
