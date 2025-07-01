@@ -1,45 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LeetCode.Graph;
-
-//implement quick find
-//implement quick union
-class DisjointSet
+﻿class DisjointSet
 {
-    private List<int> _Nodes;
+    private int[] parent;
+    private int[] rank;
 
-    public DisjointSet(List<int> nodes)
+    public DisjointSet(int size)
     {
-        _Nodes = nodes;
-    }
-
-    public void Union(int first, int second)
-    {
-        var parent = Find(second);
-
-        _Nodes[parent] = first;
-    }
-
-    public int Find(int node)
-    {
-        var current = node;
-        while (_Nodes.ElementAtOrDefault(current) != current)
+        parent = new int[size];
+        rank = new int[size];
+        for (int i = 0; i < size; i++)
         {
-            current = _Nodes.ElementAt(current);
+            parent[i] = i;
+            rank[i] = 0;
         }
-
-        return current;
     }
 
-    public bool IsConnected(int first, int second)
+    public int Find(int x)
     {
-        var firstParent = Find(first);
-        var secondParent = Find(second);
+        if (parent[x] == x)
+            return parent[x];
+        return parent[x] = Find(parent[x]); // Path compression
+    }
 
-        return firstParent == secondParent;
+    public void Union(int x, int y)
+    {
+        int rootX = Find(x);
+        int rootY = Find(y);
+        if (rootX == rootY) return;
+
+        if (rank[rootX] < rank[rootY])
+            parent[rootX] = rootY;
+        else if (rank[rootX] > rank[rootY])
+            parent[rootY] = rootX;
+        else
+        {
+            parent[rootY] = rootX;
+            rank[rootX]++;
+        }
+    }
+
+    public bool IsConnected(int x, int y)
+    {
+        return Find(x) == Find(y);
     }
 }
