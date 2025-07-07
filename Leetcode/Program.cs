@@ -3,6 +3,7 @@ using LeetCode;
 using LeetCode.GoogleQuestions;
 using LeetCode.GoogleQuestions.Arrays_Strings;
 using LeetCode.Graph;
+using LeetCode.Graph.DisjointSetProblems;
 using System.Text.Json;
 
 var google = new GoogleSolutions();
@@ -157,18 +158,49 @@ int[][] stones5 = [[3, 3], [4, 4], [1, 4], [1, 5], [2, 3], [4, 3], [2, 4]];
 //Console.WriteLine(new CourseSchedule2().FindOrder(2, [[0, 1]]));
 //Console.WriteLine(new CourseSchedule2().FindOrder(1, []));
 
-var disjointSetPractice = new DisjointSet([0,1,2,3,4,5,6,7,8,9]);
+//var disjointSetPractice = new DisjointSet(9);
 
-disjointSetPractice.Union(0, 1);
-disjointSetPractice.Union(0, 2);
-disjointSetPractice.Union(1, 3);
-disjointSetPractice.Union(4, 8);
-disjointSetPractice.Union(5, 6);
-disjointSetPractice.Union(5, 7);
+//disjointSetPractice.Union(0, 1);
+//disjointSetPractice.Union(0, 2);
+//disjointSetPractice.Union(1, 3);
+//disjointSetPractice.Union(4, 8);
+//disjointSetPractice.Union(5, 6);
+//disjointSetPractice.Union(5, 7);
 
-disjointSetPractice.IsConnected(0, 3);
-disjointSetPractice.IsConnected(1, 5);
-disjointSetPractice.IsConnected(7, 8);
+//disjointSetPractice.IsConnected(0, 3);
+//disjointSetPractice.IsConnected(1, 5);
+//disjointSetPractice.IsConnected(7, 8);
+
+//var numProvinces = new NumberOfProvinces();
+//Console.WriteLine(numProvinces.FindCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]]));
+//Console.WriteLine(numProvinces.FindCircleNum([[1, 0, 0], [0, 1, 0], [0, 0, 1]]));
+//Console.WriteLine(numProvinces.FindCircleNum([
+//    [1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+//    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//    [0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+//    [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+//    [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+//    [0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+//    [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+//    [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0],
+//    [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1],
+//    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+//    [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+//    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+//]));
+
+//var GraphValidTree = new GraphValidTree();
+//Console.WriteLine(GraphValidTree.ValidTree(5, [[0, 1], [0, 2], [0, 3], [1, 4]]));
+//Console.WriteLine(GraphValidTree.ValidTree(5, [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]));
+//Console.WriteLine(GraphValidTree.ValidTree(4, [[0, 1], [2, 3]]));
+//Console.WriteLine(GraphValidTree.ValidTree(3, [[1, 0]]));
+
+var NumberOfConnected = new NumberOfConnectedComponentsInAnUndirectedGraph();
+Console.WriteLine(NumberOfConnected.CountComponents(5, [[0, 1], [1, 2], [3, 4]]));
+Console.WriteLine(NumberOfConnected.CountComponents(5, [[0, 1], [1, 2], [2, 3], [3, 4]]));
 
 //********************  End Trees / Graphs *********************************
 

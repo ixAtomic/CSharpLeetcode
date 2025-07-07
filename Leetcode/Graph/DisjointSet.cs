@@ -2,9 +2,11 @@
 {
     private int[] parent;
     private int[] rank;
+    private int _size;
 
     public DisjointSet(int size)
     {
+        _size = size;
         parent = new int[size];
         rank = new int[size];
         for (int i = 0; i < size; i++)
@@ -21,11 +23,11 @@
         return parent[x] = Find(parent[x]); // Path compression
     }
 
-    public void Union(int x, int y)
+    public bool Union(int x, int y)
     {
         int rootX = Find(x);
         int rootY = Find(y);
-        if (rootX == rootY) return;
+        if (rootX == rootY) return false;
 
         if (rank[rootX] < rank[rootY])
             parent[rootX] = rootY;
@@ -36,6 +38,19 @@
             parent[rootY] = rootX;
             rank[rootX]++;
         }
+
+        return true;
+    }
+
+    public int RootsCount()
+    {
+        var roots = new HashSet<int>();
+        for (int i = 0; i < _size; i++)
+        {
+            roots.Add(Find(i));
+        }
+
+        return roots.Count();
     }
 
     public bool IsConnected(int x, int y)
