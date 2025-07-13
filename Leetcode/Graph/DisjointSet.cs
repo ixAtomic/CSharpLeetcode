@@ -2,11 +2,11 @@
 {
     private int[] parent;
     private int[] rank;
-    private int _size;
+    private int _roots; //if _roots is ever modified outside of union method then _roots will need to be updated accordingly
 
     public DisjointSet(int size)
     {
-        _size = size;
+        _roots = size;
         parent = new int[size];
         rank = new int[size];
         for (int i = 0; i < size; i++)
@@ -39,18 +39,13 @@
             rank[rootX]++;
         }
 
+        _roots--;
         return true;
     }
 
     public int RootsCount()
     {
-        var roots = new HashSet<int>();
-        for (int i = 0; i < _size; i++)
-        {
-            roots.Add(Find(i));
-        }
-
-        return roots.Count();
+        return _roots;
     }
 
     public bool IsConnected(int x, int y)
