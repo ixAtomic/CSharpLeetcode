@@ -29,7 +29,7 @@ public class PopulatingNextRightPointers
 
         queue.Enqueue(root.right);
         queue.Enqueue(root.left);
-        NNode next = null;
+        Node next = null;
 
         while (queue.Any())
         {
