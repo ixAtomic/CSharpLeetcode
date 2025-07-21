@@ -7,43 +7,48 @@ using System.Xml.Schema;
 
 namespace LeetCode.Graph.DisjointSetProblems;
 
-class OptimizeWaterDistributionInVillage
+public class OptimizeWaterDistributionInVillage
 {
     public int MinCostToSupplyWater(int n, int[] wells, int[][] pipes)
     {
-        var disjointSet = new DisjointSet(n);
-        var weights = new Dictionary<(int x, int y), int>();
-        foreach (var pipe in pipes)
+        var disjointSet = new DisjointSet(n + 1);
+        PriorityQueue<Edge, int> queue = new PriorityQueue<Edge, int>();
+        var connections = n;
+        for (int i = 0; i < pipes.Length; i++)
         {
-            var x = pipe[0];
-            var y = pipe[1];
-            var price = pipe[2];
+            var x = pipes[i][0] - 1;
+            var y = pipes[i][1] - 1;
+            var cost = pipes[i][2];
 
-            disjointSet.Union(x, y);
+            queue.Enqueue(new Edge(x, y, cost), cost);
         }
 
-        Dictionary<int, List<int>> rootToComponent = new Dictionary<int, List<int>>();
-        for(int vertex = 0; vertex < n; vertex++)
+        for(int i = 0; i < wells.Length; i++)
         {
-            var root = disjointSet.Find(vertex);
-            if (!rootToComponent.ContainsKey(root))
-                rootToComponent[root] = new List<int>();
-            rootToComponent[root].Add(vertex);
+            queue.Enqueue(new Edge(n, i, wells[i]), wells[i]);
         }
 
-        var total = 0;
-        foreach(var component in rootToComponent.Values)
+        int total = 0;
+        while (queue.Count > 0 && connections > 0)
         {
-            foreach(var connectedHouse in component)
+            var current = queue.Dequeue();
+
+            if (disjointSet.IsConnected(current.from, current.to))
             {
-
+                continue;
             }
+
+            disjointSet.Union(current.from, current.to);
+
+            Console.WriteLine($"from: {current.from}, to: {current.to}, cost: {current.cost}");
+            total += current.cost;
+
+            connections--;
         }
-
-
-        throw new NotImplementedException();
+        
+        return total;
     }
 
-    
+    private record Edge(int from, int to, int cost);
 }
 

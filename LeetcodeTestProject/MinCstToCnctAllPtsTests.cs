@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using LeetCode.Graph.MinimumSpanningTree;
+using LeetCode.Graph.MinimumSpanningTree.KruskalsAlgorithm;
 
 public class MinCstToCnctAllPtsTests
 {
