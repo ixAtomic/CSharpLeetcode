@@ -10,33 +10,29 @@ public class NumNiceSubarrays
 {
     public int NumberOfSubarrays(int[] nums, int k)
     {
-        int left = 0;
-        int right = k;
-        int results = 0;
-
-        while(right <= nums.Length)
+        int currSum = 0;
+        int subArrays = 0;
+        Dictionary<int, int> set = new Dictionary<int, int>();
+        set[0] = 1;
+        for(int left = 0; left < nums.Length; left++)
         {
-            int count = 0;
-            for(int i = left;  i < right; i++)
+            currSum += nums[left] % 2;
+            var valueToFind = currSum - k;
+
+            if (set.ContainsKey(valueToFind))
             {
-                if (nums[i] % 2 != 0)
-                {
-                    count++;
-                }
+                subArrays += set[valueToFind];
             }
 
-            if(count == k)
+            if (set.ContainsKey(currSum))
             {
-                results++;
-                left++;
+                set[currSum]++;
                 continue;
             }
-            else
-            {
-                right++;
-            }
+
+            set[currSum] = 1;
         }
 
-        return results;
+        return subArrays;
     }
 }
