@@ -1,7 +1,7 @@
 using LeetcodeTestProject.LeetCodeTop150;
 using Xunit;
 
-namespace LeetcodeTestProject.LeetCodeTop150Tests
+namespace LeetcodeTestProject.LeetCodeTop150.array_string_tests
 {
     public class TrappingRainWaterTests
     {

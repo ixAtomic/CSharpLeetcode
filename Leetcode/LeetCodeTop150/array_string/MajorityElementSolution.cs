@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.LeetCodeTop150;
+namespace LeetCode.LeetCodeTop150.array_string;
 
 public class MajorityElementSolution
 {

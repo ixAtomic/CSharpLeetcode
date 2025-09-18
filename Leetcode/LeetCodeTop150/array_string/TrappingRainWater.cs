@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetcodeTestProject.LeetCodeTop150;
+namespace LeetcodeTestProject.LeetCodeTop150.array_string_tests;
 
 public class TrappingRainWater
 {

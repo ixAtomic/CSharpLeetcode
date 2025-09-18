@@ -1,7 +1,8 @@
 using Xunit;
 using LeetCode.LeetCodeTop150;
+using LeetCode.LeetCodeTop150.array_string;
 
-namespace LeetcodeTestProject.LeetCodeTop150Tests;
+namespace LeetcodeTestProject.LeetCodeTop150.array_string_tests;
 
 public class MergeSortedArrayTests
 {
@@ -13,7 +14,7 @@ public class MergeSortedArrayTests
         int[] expected = { 1, 2, 3, 4, 5, 6 };
         var solution = new MergeSortedArray();
 
-        solution.Merge(nums1, 3, nums2, 3);
+        solution.MergeSecond(nums1, 3, nums2, 3);
 
         Assert.Equal(expected, nums1);
     }

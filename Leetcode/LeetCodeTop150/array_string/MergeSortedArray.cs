@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.LeetCodeTop150;
+namespace LeetCode.LeetCodeTop150.array_string;
 
 public class MergeSortedArray
 {
@@ -19,6 +19,31 @@ public class MergeSortedArray
 
     //[1], m = 1
     //[], n = 0
+
+
+    public void MergeSecond(int[] nums1, int m, int[] nums2, int n)
+    {
+        int p = m + n;
+        m--;
+        n--;
+        for(int i = p - 1; i >= 0; i--)
+        {
+            if(n < 0)
+            {
+                break;
+            }
+
+            if (m >= 0 && nums1[m] > nums2[n])
+            {
+                nums1[i] = nums1[m--];
+            }
+            else
+            {
+                nums1[i] = nums2[n--];
+            }
+        }
+    }
+
 
     public void Merge(int[] nums1, int m, int[] nums2, int n)
     {
