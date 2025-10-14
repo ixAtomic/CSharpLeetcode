@@ -10,55 +10,25 @@ public class GroupAnagram
 {
     public IList<IList<string>> GroupAnagrams(string[] strs)
     {
-        int[] letters = new int[26];
-        IList<IList<string>> result = [];
-        int j = 0;
-        while (j < strs.Length)
+        Dictionary<string, IList<string>> result = new Dictionary<string, IList<string>>();
+        foreach (var str in strs)
         {
-            List<string> valid = new List<string>();
-            string word = strs[j++];
-            valid.Add(word);
-            foreach(char c in word) //fill the dictionary with this words valid values
+            char[] chars = new char[26];
+
+            foreach (var c in str)
             {
-                letters[c - 'a']++;
+                chars[c - 'a']++;
             }
 
-            for (int i = j; i < strs.Length; i++)
+            string key = new string(chars);
+
+            if (!result.ContainsKey(key))
             {
-                if (strs[i].Length != word.Length)
-                {
-                    continue;
-                }
-
-                bool isValid = true;
-                int[] check = new int[26];
-                Array.Copy(letters, check, letters.Length);
-                for(int k = 0; k < strs[i].Length; k++)
-                {
-                    char current = strs[i][k];
-
-                    check[current - 'a']--;
-
-                    if(check[current - 'a'] < 0)
-                    {
-                        isValid = false;
-                        break;
-                    }
-                }
-
-                if (isValid)
-                {
-                    valid.Add(strs[i]);
-                    string temp = strs[j];
-                    strs[j] = strs[i];
-                    strs[i] = temp;
-                    j++;
-                }
+                result[key] = new List<string>();
             }
-            result.Add(valid);
-            Array.Clear(letters);
+            result[key].Add(str);
         }
 
-        return result;
+        return result.Values.ToList();
     }
 }
